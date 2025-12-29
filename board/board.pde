@@ -105,6 +105,8 @@ PVector getRandomNonWallPosition() {
   }
   return null; // Au cas où on ne trouve rien (peu probable)
 }
+
+
   
   void drawIt() {
     // Si le tableau est mal initialisé (erreur de fichier), on ne dessine rien
@@ -145,5 +147,14 @@ PVector getRandomNonWallPosition() {
         }
       }
     }
+  }
+  // Vérifie si une case (x, y) est un mur ou hors limites
+  boolean isWall(int x, int y) {
+    // Si on est hors du tableau, on considère que c'est un mur
+    if (x < 0 || x >= _nbCellsX || y < 0 || y >= _nbCellsY) {
+      return true;
+    }
+    // Sinon, on regarde le type de la case
+    return _cells[x][y] == TypeCell.WALL;
   }
 }
